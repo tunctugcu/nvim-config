@@ -8,7 +8,9 @@ return {
   {
     'williamboman/mason.nvim',
     lazy = false,
-    config = true,
+    config = function()
+      require('mason').setup()
+    end,
   },
 
   -- Autocompletion
@@ -32,7 +34,7 @@ return {
         }),
         snippet = {
           expand = function(args)
-            vim.snippet.expand(args.body)
+            require('luasnip').lsp_expand(args.body)
           end,
         },
       })

@@ -39,6 +39,9 @@ vim.opt.scrolloff = 8
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" } )
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" } )
 
+vim.opt.termguicolors = true
+vim.opt.ignorecase = true
+
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
