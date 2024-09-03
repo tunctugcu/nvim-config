@@ -35,6 +35,8 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" } )
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" } )
@@ -42,8 +44,10 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" } )
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
 
-
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+vim.g.user_emmet_install_global = 1
+vim.g.user_emmet_leader_key='<C-y>'
 
 
 -- Setup lazy.nvim

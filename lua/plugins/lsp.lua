@@ -2,7 +2,7 @@ return {
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v4.x',
-    lazy = true,
+    lazy = false,
     config = false,
   },
   {
@@ -26,11 +26,17 @@ return {
       cmp.setup({
         sources = {
           {name = 'nvim_lsp'},
+          {name = 'luasnip'},  -- Snippet completion
+          {name = 'buffer'},   -- Buffer words completion
+          {name = 'path'},     -- File path completion
         },
         mapping = cmp.mapping.preset.insert({
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-d>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),    -- Trigger completion with Ctrl+Space
+          ['<C-u>'] = cmp.mapping.scroll_docs(-4),   -- Scroll up in the documentation
+          ['<C-d>'] = cmp.mapping.scroll_docs(4),    -- Scroll down in the documentation
+          ['<C-e>'] = cmp.mapping.abort(),           -- Close the completion menu
+          ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Confirm the selection
+          ['<Tab>'] = cmp.mapping.confirm({ select = true }),
         }),
         snippet = {
           expand = function(args)
@@ -38,6 +44,12 @@ return {
           end,
         },
       })
+
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+      )
     end
   },
 
@@ -54,8 +66,6 @@ return {
     config = function()
       local lsp_zero = require('lsp-zero')
 
-      -- lsp_attach is where you enable features that only work
-      -- if there is a language server active in the file
       local lsp_attach = function(client, bufnr)
         local opts = {buffer = bufnr}
 
@@ -78,15 +88,25 @@ return {
       })
 
       require('mason-lspconfig').setup({
-        ensure_installed = {},
-        handlers = {
-          -- this first function is the "default handler"
-          -- it applies to every language server without a "custom handler"
-          function(server_name)
-            require('lspconfig')[server_name].setup({})
-          end,
-        }
+        ensure_installed = {
+          'tsserver', 
+          'eslint',
+          'sourcekit',  -- Swift LSP
+          'html',       -- HTML LSP
+          'gopls',      -- Go LSP
+        },
+        automatic_installation = true,  -- Enable automatic installation
+      })
+
+      require('mason-lspconfig').setup_handlers({
+        function(server_name)
+          require('lspconfig')[server_name].setup({
+            on_attach = lsp_attach,
+            capabilities = require('cmp_nvim_lsp').default_capabilities(),
+          })
+        end,
       })
     end
   }
 }
+
