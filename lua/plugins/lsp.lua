@@ -89,7 +89,7 @@ return {
 
       require('mason-lspconfig').setup({
         ensure_installed = {
-          'ts_ls', 
+          'ts_ls',
           'eslint',
           'sourcekit',  -- Swift LSP
           'html',       -- HTML LSP
