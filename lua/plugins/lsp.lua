@@ -99,12 +99,15 @@ return {
       })
 
       require('mason-lspconfig').setup_handlers({
-        function(server_name)
-          require('lspconfig')[server_name].setup({
-            on_attach = lsp_attach,
-            capabilities = require('cmp_nvim_lsp').default_capabilities(),
-          })
-        end,
+		  function(server_name)
+			  if server_name == 'tsserver' then
+				  server_name = 'ts_ls'
+			  end
+			  require('lspconfig')[server_name].setup({
+				  on_attach = lsp_attach,
+				  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+			  })
+		  end
       })
     end
   }
