@@ -15,6 +15,9 @@ return {
 			filters = {
 				dotfiles = false,
 			},
+			hijack_directories = {
+				enable = false,
+			},
 			renderer = {
 				highlight_git = true,
 				icons = {

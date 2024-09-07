@@ -91,7 +91,7 @@ return {
         ensure_installed = {
           'ts_ls',
           'eslint',
-          'sourcekit',  -- Swift LSP
+          'sourcekit-lsp',  -- Swift LSP
           'html',       -- HTML LSP
           'gopls',      -- Go LSP
 		  'intelephense', -- PHP
