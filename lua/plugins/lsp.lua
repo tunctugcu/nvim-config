@@ -87,17 +87,19 @@ return {
         capabilities = require('cmp_nvim_lsp').default_capabilities()
       })
 
-      require('mason-lspconfig').setup({
-        ensure_installed = {
-          'ts_ls',
-          'eslint',
-          'sourcekit-lsp',  -- Swift LSP
-          'html',       -- HTML LSP
-          'gopls',      -- Go LSP
-		  'intelephense', -- PHP
-        },
-        automatic_installation = true,  -- Enable automatic installation
-      })
+	  require('mason-lspconfig').setup({
+		  ensure_installed = {
+			  'html',
+			  'tailwindcss',
+			  'lua_ls',
+			  'tsserver',
+			  'eslint',
+			  'html',       -- HTML LSP
+			  'gopls',      -- Go LSP
+			  'intelephense', -- PHP
+		  },
+		  automatic_installation = true,  -- Enable automatic installation
+	  })
 
       require('mason-lspconfig').setup_handlers({
 		  function(server_name)
@@ -113,4 +115,3 @@ return {
     end
   }
 }
-
