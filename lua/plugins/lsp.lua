@@ -1,17 +1,17 @@
 return {
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v4.x',
-    lazy = false,
-    config = false,
-  },
-  {
-    'williamboman/mason.nvim',
-    lazy = false,
-    config = function()
-      require('mason').setup()
-    end,
-  },
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v4.x',
+		lazy = false,
+		config = false,
+	},
+	{
+		'williamboman/mason.nvim',
+		lazy = false,
+		config = function()
+			require('mason').setup()
+		end,
+	},
 
   -- Autocompletion
   {
@@ -94,6 +94,7 @@ return {
           'sourcekit',  -- Swift LSP
           'html',       -- HTML LSP
           'gopls',      -- Go LSP
+		  'intelephense', -- PHP
         },
         automatic_installation = true,  -- Enable automatic installation
       })

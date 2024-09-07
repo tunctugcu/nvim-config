@@ -48,6 +48,7 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.g.user_emmet_install_global = 1
 vim.g.user_emmet_leader_key='<C-y>'
+vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 
 -- Setup lazy.nvim
