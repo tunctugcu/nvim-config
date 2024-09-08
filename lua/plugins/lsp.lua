@@ -27,7 +27,7 @@ return {
 				'html',
 				'tailwindcss',
 				'lua_ls',
-				'tsserver',
+				'ts_ls',
 				'eslint',
 				'html',
 				'gopls',
