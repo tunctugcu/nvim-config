@@ -35,14 +35,19 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.scrolloff = 8
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.expandtab = true       -- Convert tabs to spaces
+vim.opt.tabstop = 2            -- Number of spaces per tab
+vim.opt.shiftwidth = 2         -- Number of spaces for each indentation level
+vim.opt.softtabstop = 2        -- Number of spaces a <Tab> counts for while editing
+
 
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" } )
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" } )
 
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
+vim.opt.splitright = true
+print('I am in split set')
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -50,8 +55,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
 
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = CnutGroup,
-	callback = function(e) 
+	callback = function(e)
 		local opts = { buffer = e.buf }
 	vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
 	vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -81,3 +85,4 @@ require("lazy").setup({
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 })
+
