@@ -47,7 +47,6 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" } )
 vim.opt.termguicolors = true
 vim.opt.ignorecase = true
 vim.opt.splitright = true
-print('I am in split set')
 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -69,6 +68,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 	end
 })
+
+vim.keymap.set("n", "<leader>th", function()
+  vim.cmd('vsplit')
+  vim.cmd(':terminal')
+end)
 
 -- Setup lazy.nvim
 require("lazy").setup({
