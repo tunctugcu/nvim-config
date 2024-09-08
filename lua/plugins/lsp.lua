@@ -31,7 +31,6 @@ return {
 				'eslint',
 				'html',
 				'gopls',
-				'intelephense',
 			},
 			handlers = {
 				function(server_name)
