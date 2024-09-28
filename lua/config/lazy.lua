@@ -82,6 +82,15 @@ vim.keymap.set("n", "<leader>th", function()
   vim.cmd(':terminal')
 end)
 
+vim.api.nvim_create_augroup("AutoSaveFocusLost", { clear = true })
+vim.api.nvim_create_autocmd("FocusLost", {
+  group = "AutoSaveFocusLost",
+  pattern = "*",
+  callback = function()
+    vim.cmd("silent! write")
+  end,
+})
+
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
