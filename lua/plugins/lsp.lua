@@ -12,6 +12,8 @@ return {
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
 		'j-hui/fidget.nvim',
+    'jose-elias-alvarez/null-ls.nvim', -- Add null-ls for Prettier integration
+		'nvim-lua/plenary.nvim', -- Required by null-ls
 	},
 	config = function ()
 		local cmp_lsp = require('cmp_nvim_lsp')
@@ -56,6 +58,24 @@ return {
 					})
 				end
 			},
+		})
+
+    -- Prettier setup using null-ls
+		local null_ls = require('null-ls')
+		null_ls.setup({
+			sources = {
+				null_ls.builtins.formatting.prettierd, -- Use Prettier daemon
+			},
+			on_attach = function(client, bufnr)
+				if client.server_capabilities.documentFormattingProvider then
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ bufnr = bufnr })
+						end,
+					})
+				end
+			end,
 		})
 
 		local cmp = require('cmp')
