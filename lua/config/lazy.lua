@@ -53,6 +53,9 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("v", "<C-J>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<C-K>", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("n", "<Tab>", ":bnext<CR>")
+vim.keymap.set("n", "<S-Tab>", ":bprev<CR>")
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(e)
 		local opts = { buffer = e.buf }
