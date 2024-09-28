@@ -56,6 +56,9 @@ vim.keymap.set("v", "<C-K>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<Tab>", ":bnext<CR>")
 vim.keymap.set("n", "<S-Tab>", ":bprev<CR>")
 
+vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
+
 vim.api.nvim_create_autocmd('LspAttach', {
 	callback = function(e)
 		local opts = { buffer = e.buf }
