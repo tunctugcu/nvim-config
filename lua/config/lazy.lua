@@ -101,6 +101,18 @@ vim.api.nvim_create_autocmd("FocusLost", {
   end,
 })
 
+
+vim.api.nvim_create_augroup("AutoSaveOnBufferChange", { clear = true })
+vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI", "BufLeave"}, {
+  group = "AutoSaveOnBufferChange",
+  pattern = "*",
+  callback = function()
+    if vim.bo.modified then
+      vim.cmd("silent! write")
+    end
+  end,
+})
+
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
