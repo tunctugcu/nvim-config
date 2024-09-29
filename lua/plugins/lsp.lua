@@ -33,6 +33,7 @@ return {
 				'eslint',
 				'html',
 				'gopls',
+        'cssls',
 			},
 			handlers = {
 				function(server_name)
