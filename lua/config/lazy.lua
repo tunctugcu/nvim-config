@@ -56,8 +56,8 @@ vim.keymap.set("v", "<C-K>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("n", "<Tab>", ":bnext<CR>")
 vim.keymap.set("n", "<S-Tab>", ":bprev<CR>")
 
-vim.keymap.set('n', '<C-s>', ':w<CR>', { noremap = true, silent = true })
-vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-s>', ':wa<CR>', { noremap = true, silent = true })
+vim.keymap.set('i', '<C-s>', '<Esc>:wa<CR>a', { noremap = true, silent = true })
 
 
 vim.api.nvim_set_keymap('n', '<leader>lss', ':LiveServerStart<CR>', { noremap = true, silent = true })
@@ -98,18 +98,6 @@ vim.api.nvim_create_autocmd("FocusLost", {
   pattern = "*",
   callback = function()
     vim.cmd("silent! write")
-  end,
-})
-
-
-vim.api.nvim_create_augroup("AutoSaveOnBufferChange", { clear = true })
-vim.api.nvim_create_autocmd({"TextChanged", "TextChangedI", "BufLeave"}, {
-  group = "AutoSaveOnBufferChange",
-  pattern = "*",
-  callback = function()
-    if vim.bo.modified then
-      vim.cmd("silent! write")
-    end
   end,
 })
 
