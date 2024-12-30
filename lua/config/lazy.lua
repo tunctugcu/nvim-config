@@ -103,6 +103,7 @@ vim.api.nvim_create_autocmd("FocusLost", {
 
 -- Setup lazy.nvim
 require("lazy").setup({
+  notify = false,
 	spec = {
 		-- import your plugins
 		{ import = "plugins" },
