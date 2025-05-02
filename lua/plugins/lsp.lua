@@ -12,7 +12,7 @@ return {
 		'L3MON4D3/LuaSnip',
 		'saadparwaiz1/cmp_luasnip',
 		'j-hui/fidget.nvim',
-    'jose-elias-alvarez/null-ls.nvim', -- Add null-ls for Prettier integration
+    'nvimtools/none-ls.nvim',
 		'nvim-lua/plenary.nvim', -- Required by null-ls
 	},
 	config = function ()
@@ -65,7 +65,9 @@ return {
 		local null_ls = require('null-ls')
 		null_ls.setup({
 			sources = {
-				null_ls.builtins.formatting.prettierd, -- Use Prettier daemon
+        --null_ls.builtins.formatting.prettierd, -- Use Prettier daemon
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.eslint,
 			},
 			on_attach = function(client, bufnr)
 				if client.server_capabilities.documentFormattingProvider then
