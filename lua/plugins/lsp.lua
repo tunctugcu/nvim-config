@@ -57,17 +57,28 @@ return {
 							}
 						}
 					})
+				end,
+				["eslint"] = function()
+					require('lspconfig').eslint.setup({
+						capabilities = capabilities,
+						on_attach = function(client, bufnr)
+							vim.api.nvim_create_autocmd("BufWritePre", {
+								buffer = bufnr,
+								command = "EslintFixAll",
+							})
+						end,
+					})
 				end
 			},
 		})
 
-    -- Prettier setup using null-ls
+    -- Prettier setup using none-ls
 		local null_ls = require('null-ls')
 		null_ls.setup({
 			sources = {
         --null_ls.builtins.formatting.prettierd, -- Use Prettier daemon
         null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.eslint,
+        -- ESLint diagnostics are now handled by the ESLint LSP server
 			},
 			on_attach = function(client, bufnr)
 				if client.server_capabilities.documentFormattingProvider then
